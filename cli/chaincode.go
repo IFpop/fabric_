@@ -106,7 +106,7 @@ func (c *Client) InvokeCC(peers []string) (fab.TransactionID, error) {
 	// new channel request for invoke
 	args := packArgs([]string{"a", "b", "10"})
 	req := channel.Request{
-		ChaincodeID: "mycc",
+		ChaincodeID: c.CCID,
 		Fcn:         "invoke",
 		Args:        args,
 	}
@@ -157,7 +157,7 @@ func (c *Client) QueryCC(peer, keys string) error {
 	log.Printf("QueryCC")
 	// new channel request for query
 	req := channel.Request{
-		ChaincodeID: "mycc",
+		ChaincodeID: c.CCID,
 		Fcn:         "query",
 		Args:        packArgs([]string{keys}),
 	}
